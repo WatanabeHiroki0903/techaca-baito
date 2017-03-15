@@ -113,7 +113,7 @@
                 <!--{/if}-->
 
                 <!--★販売価格★-->
-                <dl class="sale_price">
+                <s class="sale_price">
                     <dt><!--{$smarty.const.SALE_PRICE_TITLE}-->(税込)：</dt>
                     <dd class="price">
                         <span id="price02_default"><!--{strip}-->
@@ -125,19 +125,34 @@
                         <!--{/strip}--></span><span id="price02_dynamic"></span>
                         円
                     </dd>
+                </s>
+
+                <!--★特別価格★-->
+                <dl class="sale_price">
+                    <dt><!--{$smarty.const.SPECIAL_PRICE_TITLE}-->(税込)：</dt>
+                    <dd class="price">
+                        <span id="price03_default"><!--{strip}-->
+                            <!--{if $arrProduct.price03_min_inctax == $arrProduct.price03_max_inctax}-->
+                            <!--{$arrProduct.price03_min_inctax|n2s}-->
+                            <!--{else}-->
+                            <!--{$arrProduct.price03_min_inctax|n2s}-->～<!--{$arrProduct.price03_max_inctax|n2s}-->
+                            <!--{/if}-->
+                            <!--{/strip}--></span><span id="price03_dynamic"></span>
+                        円
+                    </dd>
                 </dl>
 
                 <!--★ポイント★-->
                 <!--{if $smarty.const.USE_POINT !== false}-->
                     <div class="point">ポイント：
                         <span id="point_default"><!--{strip}-->
-                            <!--{if $arrProduct.price02_min == $arrProduct.price02_max}-->
-                                <!--{$arrProduct.price02_min|sfPrePoint:$arrProduct.point_rate|n2s}-->
+                            <!--{if $arrProduct.price03_min == $arrProduct.price03_max}-->
+                                <!--{$arrProduct.price03_min|sfPrePoint:$arrProduct.point_rate|n2s}-->
                             <!--{else}-->
-                                <!--{if $arrProduct.price02_min|sfPrePoint:$arrProduct.point_rate == $arrProduct.price02_max|sfPrePoint:$arrProduct.point_rate}-->
-                                    <!--{$arrProduct.price02_min|sfPrePoint:$arrProduct.point_rate|n2s}-->
+                                <!--{if $arrProduct.price03_min|sfPrePoint:$arrProduct.point_rate == $arrProduct.price03_max|sfPrePoint:$arrProduct.point_rate}-->
+                                    <!--{$arrProduct.price03_min|sfPrePoint:$arrProduct.point_rate|n2s}-->
                                 <!--{else}-->
-                                    <!--{$arrProduct.price02_min|sfPrePoint:$arrProduct.point_rate|n2s}-->～<!--{$arrProduct.price02_max|sfPrePoint:$arrProduct.point_rate|n2s}-->
+                                    <!--{$arrProduct.price03_min|sfPrePoint:$arrProduct.point_rate|n2s}-->～<!--{$arrProduct.price03_max|sfPrePoint:$arrProduct.point_rate|n2s}-->
                                 <!--{/if}-->
                             <!--{/if}-->
                         <!--{/strip}--></span><span id="point_dynamic"></span>
