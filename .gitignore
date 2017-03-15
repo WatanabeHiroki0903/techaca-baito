@@ -1,0 +1,7 @@
+.gitignore
+eccube-2.13.5/data/Smarty/templates_c/
+eccube-2.13.5/data/cache/
+eccube-2.13.5/html/install/
+eccube-2.13.5/.idea/
+eccube-2.13.5/data/logs/
+eccube-2.13.5/data/config/
