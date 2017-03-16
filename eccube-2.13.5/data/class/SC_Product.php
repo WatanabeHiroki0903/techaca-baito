@@ -305,9 +305,14 @@ __EOS__;
                     ? number_format(SC_Helper_TaxRule_Ex::sfCalcIncTax($arrProductsClass['price02'], $productId, $arrProductsClass['product_class_id']))
                     : '';
 
+                $arrClassCats2['price03']
+                    = strlen($arrProductsClass['price03'])
+                    ? number_format(SC_Helper_TaxRule_Ex::sfCalcIncTax($arrProductsClass['price03'], $productId, $arrProductsClass['product_class_id']))
+                    : '';
+
                 // ポイント
                 $arrClassCats2['point']
-                    = number_format(SC_Utils_Ex::sfPrePoint($arrProductsClass['price02'], $arrProductsClass['point_rate']));
+                    = number_format(SC_Utils_Ex::sfPrePoint($arrProductsClass['price03'], $arrProductsClass['point_rate']));
 
                 // 商品コード
                 $arrClassCats2['product_code'] = $arrProductsClass['product_code'];

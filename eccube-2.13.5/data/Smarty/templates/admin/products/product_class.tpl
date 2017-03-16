@@ -203,6 +203,7 @@
                 <th>在庫数<span class="attention">*</span></th>
                 <th><!--{$smarty.const.NORMAL_PRICE_TITLE}-->(円)</th>
                 <th><!--{$smarty.const.SALE_PRICE_TITLE}-->(円)<span class="attention">*</span></th>
+                <th><!--{$smarty.const.SPECIAL_PRICE_TITLE}-->(円)<span class="attention">*</span></th>
                 <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE}-->
                 <th>消費税率(%)<span class="attention">*</span></th>
                 <!--{/if}-->
@@ -273,6 +274,13 @@
                         <!--{assign var=key value="price02"}-->
                         <!--{if $arrErr[$key][$index]}-->
                             <span class="attention"><!--{$arrErr[$key][$index]}--></span>
+                        <!--{/if}-->
+                        <input type="text" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" size="6" class="box6" maxlength="<!--{$arrForm[$key].length}-->" <!--{if $arrErr[$key][$index] != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> id="<!--{$key}-->_<!--{$index}-->" />
+                    </td>
+                    <td class="center">
+                        <!--{assign var=key value="price03"}-->
+                        <!--{if $arrErr[$key][$index]}-->
+                        <span class="attention"><!--{$arrErr[$key][$index]}--></span>
                         <!--{/if}-->
                         <input type="text" name="<!--{$key}-->[<!--{$index}-->]" value="<!--{$arrForm[$key].value[$index]|h}-->" size="6" class="box6" maxlength="<!--{$arrForm[$key].length}-->" <!--{if $arrErr[$key][$index] != ""}--><!--{sfSetErrorStyle}--><!--{/if}--> id="<!--{$key}-->_<!--{$index}-->" />
                     </td>

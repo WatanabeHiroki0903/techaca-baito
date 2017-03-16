@@ -113,19 +113,21 @@
                 <!--{/if}-->
 
                 <!--★販売価格★-->
-                <s class="sale_price">
-                    <dt><!--{$smarty.const.SALE_PRICE_TITLE}-->(税込)：</dt>
-                    <dd class="price">
-                        <span id="price02_default"><!--{strip}-->
-                            <!--{if $arrProduct.price02_min_inctax == $arrProduct.price02_max_inctax}-->
-                                <!--{$arrProduct.price02_min_inctax|n2s}-->
-                            <!--{else}-->
-                                <!--{$arrProduct.price02_min_inctax|n2s}-->～<!--{$arrProduct.price02_max_inctax|n2s}-->
-                            <!--{/if}-->
-                        <!--{/strip}--></span><span id="price02_dynamic"></span>
-                        円
-                    </dd>
-                </s>
+                <dl class="sale_price">
+                    <s>
+                        <dt><!--{$smarty.const.SALE_PRICE_TITLE}-->(税込)：</dt>
+                        <dd class="price">
+                            <span id="price02_default"><!--{strip}-->
+                                <!--{if $arrProduct.price02_min_inctax == $arrProduct.price02_max_inctax}-->
+                                    <!--{$arrProduct.price02_min_inctax|n2s}-->
+                                <!--{else}-->
+                                    <!--{$arrProduct.price02_min_inctax|n2s}-->～<!--{$arrProduct.price02_max_inctax|n2s}-->
+                                <!--{/if}-->
+                            <!--{/strip}--></span><span id="price02_dynamic"></span>
+                            円
+                        </dd>
+                    </s>
+                </dl>
 
                 <!--★特別価格★-->
                 <dl class="sale_price">

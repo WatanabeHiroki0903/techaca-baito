@@ -171,18 +171,20 @@
                         <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->"><!--{$arrProduct.name|h}--></a>
                     </h3>
                     <!--★価格★-->
-                    <s class="pricebox sale_price">
-                        <!--{$smarty.const.SALE_PRICE_TITLE}-->(税込)：
-                        <span class="price">
-                            <span id="price02_default_<!--{$id}-->"><!--{strip}-->
-                                <!--{if $arrProduct.price02_min_inctax == $arrProduct.price02_max_inctax}-->
-                                    <!--{$arrProduct.price02_min_inctax|n2s}-->
-                                <!--{else}-->
-                                    <!--{$arrProduct.price02_min_inctax|n2s}-->～<!--{$arrProduct.price02_max_inctax|n2s}-->
-                                <!--{/if}-->
-                            </span><span id="price02_dynamic_<!--{$id}-->"></span><!--{/strip}-->
-                            円</span>
-                    </s>
+                    <div class="pricebox sale_price">
+                        <s>
+                            <!--{$smarty.const.SALE_PRICE_TITLE}-->(税込)：
+                            <span class="price">
+                                <span id="price02_default_<!--{$id}-->"><!--{strip}-->
+                                    <!--{if $arrProduct.price02_min_inctax == $arrProduct.price02_max_inctax}-->
+                                        <!--{$arrProduct.price02_min_inctax|n2s}-->
+                                    <!--{else}-->
+                                        <!--{$arrProduct.price02_min_inctax|n2s}-->～<!--{$arrProduct.price02_max_inctax|n2s}-->
+                                    <!--{/if}-->
+                                </span><span id="price02_dynamic_<!--{$id}-->"></span><!--{/strip}-->
+                                円</span>
+                        </s>
+                    </div>
                     <div class="pricebox sale_price">
                         <!--{$smarty.const.SPECIAL_PRICE_TITLE}-->(税込)：
                         <span class="price">

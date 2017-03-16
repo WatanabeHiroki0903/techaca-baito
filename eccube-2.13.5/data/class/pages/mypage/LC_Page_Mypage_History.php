@@ -108,15 +108,15 @@ class LC_Page_Mypage_History extends LC_Page_AbstractMypage_Ex
                     $this->tpl_arrOrderDetail[$product_index]['tax_rate'],
                     $this->tpl_arrOrderDetail[$product_index]['tax_rule']
                     );
-            $arrTempProductDetail['price02_inctax'] = SC_Helper_TaxRule_Ex::sfCalcIncTax(
-                    $arrTempProductDetail['price02'],
+            $arrTempProductDetail['price03_inctax'] = SC_Helper_TaxRule_Ex::sfCalcIncTax(
+                    $arrTempProductDetail['price03'],
                     $arrTempProductDetail['product_id'],
                     $arrTempProductDetail['product_class_id']
                     );
-            if ($this->tpl_arrOrderDetail[$product_index]['price_inctax'] != $arrTempProductDetail['price02_inctax']) {
+            if ($this->tpl_arrOrderDetail[$product_index]['price_inctax'] != $arrTempProductDetail['price03_inctax']) {
                 $this->is_price_change = true;
             }
-            $this->tpl_arrOrderDetail[$product_index]['product_price_inctax'] = ($arrTempProductDetail['price02_inctax']) ? $arrTempProductDetail['price02_inctax'] : 0 ;
+            $this->tpl_arrOrderDetail[$product_index]['product_price_inctax'] = ($arrTempProductDetail['price03_inctax']) ? $arrTempProductDetail['price03_inctax'] : 0 ;
         }
 
         $this->tpl_arrOrderDetail = $this->setMainListImage($this->tpl_arrOrderDetail);

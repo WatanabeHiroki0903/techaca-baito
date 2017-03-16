@@ -517,6 +517,18 @@
             $price02_default.show();
         }
 
+        // 特別価格
+        var $price03_default = $form.find('[id^=price03_default]');
+        var $price03_dynamic = $form.find('[id^=price03_dynamic]');
+        if (classcat2 && typeof classcat2.price03 !== 'undefined' && String(classcat2.price03).length >= 1) {
+
+            $price03_dynamic.text(classcat2.price03).show();
+            $price03_default.hide();
+        } else {
+            $price03_dynamic.hide();
+            $price03_default.show();
+        }
+
         // ポイント
         var $point_default = $form.find('[id^=point_default]');
         var $point_dynamic = $form.find('[id^=point_dynamic]');

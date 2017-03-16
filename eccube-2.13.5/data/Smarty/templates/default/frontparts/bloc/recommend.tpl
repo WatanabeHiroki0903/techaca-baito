@@ -37,9 +37,9 @@
                                 <h3>
                                     <a href="<!--{$smarty.const.P_DETAIL_URLPATH}--><!--{$arrProduct.product_id|u}-->"><!--{$arrProduct.name|h}--></a>
                                 </h3>
-                                <s class="sale_price">
-                                    <!--{$smarty.const.SALE_PRICE_TITLE}-->(税込)： <span class="price"><!--{$arrProduct.price02_min_inctax|n2s}--> 円</span>
-                                </s>
+                                <p class="sale_price">
+                                    <s><!--{$smarty.const.SALE_PRICE_TITLE}-->(税込)： <span class="price"><!--{$arrProduct.price02_min_inctax|n2s}--> 円</span></s>
+                                </p>
                                 <p class="sale_price">
                                     <!--{$smarty.const.SPECIAL_PRICE_TITLE}-->(税込)： <span class="price"><!--{$arrProduct.price03_min_inctax|n2s}--> 円</span>
                                 </p>

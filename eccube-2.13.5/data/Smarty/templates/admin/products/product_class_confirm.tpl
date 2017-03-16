@@ -63,6 +63,7 @@
                     <th>在庫数</th>
                     <th><!--{$smarty.const.NORMAL_PRICE_TITLE}-->(円)</th>
                     <th><!--{$smarty.const.SALE_PRICE_TITLE}-->(円)</th>
+                    <th><!--{$smarty.const.SPECIAL_PRICE_TITLE}-->(円)</th>
                     <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE}-->
                     <th>消費税率(%)</th>
                     <!--{/if}-->
@@ -93,6 +94,8 @@
                             <!--{assign var=key value="price01"}-->
                             <td class="right"><!--{$arrForm[$key].value[$index]|h}--></td>
                             <!--{assign var=key value="price02"}-->
+                            <td class="right"><!--{$arrForm[$key].value[$index]|h}--></td>
+                            <!--{assign var=key value="price03"}-->
                             <td class="right"><!--{$arrForm[$key].value[$index]|h}--></td>
                             <!--{if $smarty.const.OPTION_PRODUCT_TAX_RULE}-->
                             <!--{assign var=key value="tax_rate"}-->
