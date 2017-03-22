@@ -60,6 +60,12 @@ class LC_Page_FrontParts_Bloc_Recommend extends LC_Page_FrontParts_Bloc_Ex
      */
     public function action()
     {
+        //ログインチェック
+        $objCustomer = new SC_Customer_Ex();
+        if($objCustomer->isLoginSuccess()){
+            $this->tpl_login = true;
+        }
+
         // 基本情報を渡す
         $objSiteInfo = SC_Helper_DB_Ex::sfGetBasisData();
         $this->arrInfo = $objSiteInfo->data;

@@ -91,6 +91,12 @@ class LC_Page_Products_List extends LC_Page_Ex
      */
     public function action()
     {
+        //ログインチェック
+        $objCustomer = new SC_Customer_Ex();
+        if ($objCustomer->isLoginSuccess()) {
+            $this->tpl_login = true;
+        }
+
         //決済処理中ステータスのロールバック
         $objPurchase = new SC_Helper_Purchase_Ex();
         $objPurchase->cancelPendingOrder(PENDING_ORDER_CANCEL_FLAG);
