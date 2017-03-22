@@ -131,30 +131,61 @@
 
                 <!--★特別価格★-->
                 <dl class="sale_price">
-                    <dt><!--{$smarty.const.SPECIAL_PRICE_TITLE}-->(税込)：</dt>
-                    <dd class="price">
-                        <span id="price03_default"><!--{strip}-->
-                            <!--{if $arrProduct.price03_min_inctax == $arrProduct.price03_max_inctax}-->
-                            <!--{$arrProduct.price03_min_inctax|n2s}-->
-                            <!--{else}-->
-                            <!--{$arrProduct.price03_min_inctax|n2s}-->～<!--{$arrProduct.price03_max_inctax|n2s}-->
-                            <!--{/if}-->
+                    <!--{if $tpl_login}--><s><!--{/if}-->
+                        <dt><!--{$smarty.const.SPECIAL_PRICE_TITLE}-->(税込)：</dt>
+                        <dd class="price">
+                            <span id="price03_default"><!--{strip}-->
+                                <!--{if $arrProduct.price03_min_inctax == $arrProduct.price03_max_inctax}-->
+                                    <!--{$arrProduct.price03_min_inctax|n2s}-->
+                                <!--{else}-->
+                                    <!--{$arrProduct.price03_min_inctax|n2s}-->～<!--{$arrProduct.price03_max_inctax|n2s}-->
+                                <!--{/if}-->
                             <!--{/strip}--></span><span id="price03_dynamic"></span>
-                        円
-                    </dd>
+                            円
+                        </dd>
+                    <!--{if $tpl_login}--></s><!--{/if}-->
                 </dl>
+
+                <!--★会員価格★-->
+                <!--{if $tpl_login}-->
+                    <dl class="sale_price">
+                        <dt><!--{$smarty.const.MEMBER_PRICE_TITLE}-->(税込)：</dt>
+                        <dd class="price">
+                            <span id="price04_default"><!--{strip}-->
+                                <!--{if $arrProduct.price04_min_inctax == $arrProduct.price04_max_inctax}-->
+                                    <!--{$arrProduct.price04_min_inctax|n2s}-->
+                                <!--{else}-->
+                                    <!--{$arrProduct.price04_min_inctax|n2s}-->～<!--{$arrProduct.price04_max_inctax|n2s}-->
+                                <!--{/if}-->
+                            <!--{/strip}--></span><span id="price04_dynamic"></span>
+                            円
+                        </dd>
+                    </dl>
+                <!--{/if}-->
 
                 <!--★ポイント★-->
                 <!--{if $smarty.const.USE_POINT !== false}-->
                     <div class="point">ポイント：
                         <span id="point_default"><!--{strip}-->
-                            <!--{if $arrProduct.price03_min == $arrProduct.price03_max}-->
-                                <!--{$arrProduct.price03_min|sfPrePoint:$arrProduct.point_rate|n2s}-->
+                            <!--{if $tpl_login}-->
+                                <!--{if $arrProduct.price04_min == $arrProduct.price04_max}-->
+                                    <!--{$arrProduct.price04_min|sfPrePoint:$arrProduct.point_rate|n2s}-->
+                                <!--{else}-->
+                                    <!--{if $arrProduct.price04_min|sfPrePoint:$arrProduct.point_rate == $arrProduct.price04_max|sfPrePoint:$arrProduct.point_rate}-->
+                                        <!--{$arrProduct.price04_min|sfPrePoint:$arrProduct.point_rate|n2s}-->
+                                    <!--{else}-->
+                                        <!--{$arrProduct.price04_min|sfPrePoint:$arrProduct.point_rate|n2s}-->～<!--{$arrProduct.price04_max|sfPrePoint:$arrProduct.point_rate|n2s}-->
+                                    <!--{/if}-->
+                                <!--{/if}-->
                             <!--{else}-->
-                                <!--{if $arrProduct.price03_min|sfPrePoint:$arrProduct.point_rate == $arrProduct.price03_max|sfPrePoint:$arrProduct.point_rate}-->
+                                <!--{if $arrProduct.price03_min == $arrProduct.price03_max}-->
                                     <!--{$arrProduct.price03_min|sfPrePoint:$arrProduct.point_rate|n2s}-->
                                 <!--{else}-->
-                                    <!--{$arrProduct.price03_min|sfPrePoint:$arrProduct.point_rate|n2s}-->～<!--{$arrProduct.price03_max|sfPrePoint:$arrProduct.point_rate|n2s}-->
+                                    <!--{if $arrProduct.price03_min|sfPrePoint:$arrProduct.point_rate == $arrProduct.price03_max|sfPrePoint:$arrProduct.point_rate}-->
+                                        <!--{$arrProduct.price03_min|sfPrePoint:$arrProduct.point_rate|n2s}-->
+                                    <!--{else}-->
+                                        <!--{$arrProduct.price03_min|sfPrePoint:$arrProduct.point_rate|n2s}-->～<!--{$arrProduct.price03_max|sfPrePoint:$arrProduct.point_rate|n2s}-->
+                                    <!--{/if}-->
                                 <!--{/if}-->
                             <!--{/if}-->
                         <!--{/strip}--></span><span id="point_dynamic"></span>

@@ -332,6 +332,7 @@ class LC_Page_Admin_Products_Product extends LC_Page_Admin_Products_Ex
             $objFormParam->addParam('在庫数', 'stock', AMOUNT_LEN, 'n', array('SPTAB_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
             $objFormParam->addParam('在庫無制限', 'stock_unlimited', INT_LEN, 'n', array('SPTAB_CHECK', 'NUM_CHECK', 'MAX_LENGTH_CHECK'));
         }
+        $objFormParam->addParam('会員割引率', 'discount_rate', PERCENTAGE_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START', 'MAX_PERCENTAGE_CHECK'));
         $objFormParam->addParam('商品送料', 'deliv_fee', PRICE_LEN, 'n', array('NUM_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
         $objFormParam->addParam('ポイント付与率', 'point_rate', PERCENTAGE_LEN, 'n', array('EXIST_CHECK', 'NUM_CHECK', 'SPTAB_CHECK', 'MAX_LENGTH_CHECK', 'ZERO_START'));
         $objFormParam->addParam('発送日目安', 'deliv_date_id', INT_LEN, 'n', array('NUM_CHECK'));
@@ -862,6 +863,7 @@ class LC_Page_Admin_Products_Product extends LC_Page_Admin_Products_Ex
                     stock_unlimited,
                     sale_limit,
                     point_rate,
+                    discount_rate,
                     product_type_id,
                     down_filename,
                     down_realfilename
@@ -1081,6 +1083,7 @@ __EOF__;
                         $sqlval['product_class_id'] = $objQuery->nextVal('dtb_products_class_product_class_id');
                         $sqlval['deliv_fee'] = $arrList['deliv_fee'];
                         $sqlval['point_rate'] = $arrList['point_rate'];
+                        $sqlval['discount_rate'] = $arrList['discount_rate'];
                         $sqlval['sale_limit'] = $arrList['sale_limit'];
                         $sqlval['product_id'] = $product_id;
                         $sqlval['create_date'] = 'CURRENT_TIMESTAMP';
@@ -1158,7 +1161,7 @@ __EOF__;
         $objDb = new SC_Helper_DB_Ex();
 
         // 配列の添字を定義
-        $checkArray = array('product_class_id', 'product_id', 'product_code', 'stock', 'stock_unlimited', 'price01', 'price02', 'price03', 'sale_limit', 'deliv_fee', 'point_rate', 'product_type_id', 'down_filename', 'down_realfilename');
+        $checkArray = array('product_class_id', 'product_id', 'product_code', 'stock', 'stock_unlimited', 'price01', 'price02', 'price03', 'sale_limit', 'deliv_fee', 'point_rate', 'discount_rate', 'product_type_id', 'down_filename', 'down_realfilename');
         $sqlval = SC_Utils_Ex::sfArrayIntersectKeys($arrList, $checkArray);
         $sqlval = SC_Utils_Ex::arrayDefineIndexes($sqlval, $checkArray);
 
@@ -1193,6 +1196,7 @@ __EOF__;
 
         $sqlval['deliv_fee'] = $arrList['deliv_fee'];
         $sqlval['point_rate'] = $arrList['point_rate'];
+        $sqlval['discount_rate'] = $arrList['discount_rate'];
         $sqlval['sale_limit'] = $arrList['sale_limit'];
         $where = 'product_id = ?';
         $objQuery->update('dtb_products_class', $sqlval, $where, array($arrList['product_id']));

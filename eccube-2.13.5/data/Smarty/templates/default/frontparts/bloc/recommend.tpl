@@ -41,8 +41,13 @@
                                     <s><!--{$smarty.const.SALE_PRICE_TITLE}-->(税込)： <span class="price"><!--{$arrProduct.price02_min_inctax|n2s}--> 円</span></s>
                                 </p>
                                 <p class="sale_price">
-                                    <!--{$smarty.const.SPECIAL_PRICE_TITLE}-->(税込)： <span class="price"><!--{$arrProduct.price03_min_inctax|n2s}--> 円</span>
+                                    <!--{if $tpl_login}--><s><!--{/if}--><!--{$smarty.const.SPECIAL_PRICE_TITLE}-->(税込)： <span class="price"><!--{$arrProduct.price03_min_inctax|n2s}--> 円</span><!--{if $tpl_login}--></s><!--{/if}-->
                                 </p>
+                                <!--{if $tpl_login}-->
+                                <p class="sale_price">
+                                    <!--{$smarty.const.MEMBER_PRICE_TITLE}-->(税込)： <span class="price"><!--{$arrProduct.price04_min_inctax|n2s}--> 円</span>
+                                </p>
+                                <!--{/if}-->
                                 <p class="mini comment"><!--{$arrProduct.comment|h|nl2br}--></p>
                             </div>
                         </div>

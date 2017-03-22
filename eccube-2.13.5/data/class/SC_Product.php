@@ -137,6 +137,8 @@ class SC_Product
             ,price02_max
             ,price03_min
             ,price03_max
+            ,price04_min
+            ,price04_max
             ,stock_min
             ,stock_max
             ,stock_unlimited_min
@@ -310,9 +312,20 @@ __EOS__;
                     ? number_format(SC_Helper_TaxRule_Ex::sfCalcIncTax($arrProductsClass['price03'], $productId, $arrProductsClass['product_class_id']))
                     : '';
 
+                $arrClassCats2['price04']
+                    = strlen($arrProductsClass['price04'])
+                    ? number_format(SC_Helper_TaxRule_Ex::sfCalcIncTax($arrProductsClass['price04'], $productId, $arrProductsClass['product_class_id']))
+                    : '';
+
                 // ポイント
-                $arrClassCats2['point']
-                    = number_format(SC_Utils_Ex::sfPrePoint($arrProductsClass['price03'], $arrProductsClass['point_rate']));
+                $objCustomer = new SC_Customer_Ex();
+                if ($objCustomer->isLoginSuccess()) {
+                    $arrClassCats2['point']
+                        = number_format(SC_Utils_Ex::sfPrePoint($arrProductsClass['price04'], $arrProductsClass['point_rate']));
+                }else{
+                    $arrClassCats2['point']
+                        = number_format(SC_Utils_Ex::sfPrePoint($arrProductsClass['price03'], $arrProductsClass['point_rate']));
+                }
 
                 // 商品コード
                 $arrClassCats2['product_code'] = $arrProductsClass['product_code'];
@@ -357,7 +370,9 @@ __EOS__;
             T1.price01,
             T1.price02,
             T1.price03,
+            (T1.price03)*(1-(T1.discount_rate)/100) AS price04,
             T1.point_rate,
+            T1.discount_rate,
             T1.product_code,
             T1.product_class_id,
             T1.del_flg,
@@ -419,6 +434,9 @@ __EOS__;
         }
         if (!SC_Utils_Ex::isBlank($arrProduct['price03'])) {
             $arrProduct['price03_inctax'] = SC_Helper_TaxRule_Ex::sfCalcIncTax($arrProduct['price03'], $arrProduct['product_id'], $productClassId);
+        }
+        if (!SC_Utils_Ex::isBlank($arrProduct['price04'])) {
+            $arrProduct['price04_inctax'] = SC_Helper_TaxRule_Ex::sfCalcIncTax($arrProduct['price04'], $arrProduct['product_id'], $productClassId);
         }
 
         return $arrProduct;
@@ -581,6 +599,8 @@ __EOS__;
             $arrProduct['price02_max_format'] = number_format($arrProduct['price02_max']);
             $arrProduct['price03_min_format'] = number_format($arrProduct['price03_min']);
             $arrProduct['price03_max_format'] = number_format($arrProduct['price03_max']);
+            $arrProduct['price04_min_format'] = number_format($arrProduct['price04_min']);
+            $arrProduct['price04_max_format'] = number_format($arrProduct['price04_max']);
 
             SC_Product_Ex::setIncTaxToProduct($arrProduct);
 
@@ -590,6 +610,8 @@ __EOS__;
             $arrProduct['price02_max_inctax_format'] = number_format($arrProduct['price02_max_inctax']);
             $arrProduct['price03_min_inctax_format'] = number_format($arrProduct['price03_min_inctax']);
             $arrProduct['price03_max_inctax_format'] = number_format($arrProduct['price03_max_inctax']);
+            $arrProduct['price04_min_inctax_format'] = number_format($arrProduct['price04_min_inctax']);
+            $arrProduct['price04_max_inctax_format'] = number_format($arrProduct['price04_max_inctax']);
 
             // @deprecated 2.12.4
             // 旧バージョン互換用
@@ -632,6 +654,8 @@ __EOS__;
         $arrProduct['price02_max_inctax'] = isset($arrProduct['price02_max']) ? SC_Helper_TaxRule_Ex::sfCalcIncTax($arrProduct['price02_max'], $arrProduct['product_id']) : null;
         $arrProduct['price03_min_inctax'] = isset($arrProduct['price03_min']) ? SC_Helper_TaxRule_Ex::sfCalcIncTax($arrProduct['price03_min'], $arrProduct['product_id']) : null;
         $arrProduct['price03_max_inctax'] = isset($arrProduct['price03_max']) ? SC_Helper_TaxRule_Ex::sfCalcIncTax($arrProduct['price03_max'], $arrProduct['product_id']) : null;
+        $arrProduct['price04_min_inctax'] = isset($arrProduct['price04_min']) ? SC_Helper_TaxRule_Ex::sfCalcIncTax($arrProduct['price04_min'], $arrProduct['product_id']) : null;
+        $arrProduct['price04_max_inctax'] = isset($arrProduct['price04_max']) ? SC_Helper_TaxRule_Ex::sfCalcIncTax($arrProduct['price04_max'], $arrProduct['product_id']) : null;
     }
 
     /**
@@ -673,8 +697,10 @@ __EOS__;
                 dtb_products_class.price01,
                 dtb_products_class.price02,
                 dtb_products_class.price03,
+                (dtb_products_class.price03)*(1-(dtb_products_class.discount_rate)/100) AS price04,
                 dtb_products_class.deliv_fee,
                 dtb_products_class.point_rate,
+                dtb_products_class.discount_rate,
                 dtb_products_class.down_filename,
                 dtb_products_class.down_realfilename,
                 dtb_products_class.classcategory_id1 AS classcategory_id, /* 削除 */

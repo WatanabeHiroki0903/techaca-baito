@@ -186,17 +186,33 @@
                         </s>
                     </div>
                     <div class="pricebox sale_price">
-                        <!--{$smarty.const.SPECIAL_PRICE_TITLE}-->(税込)：
+                        <!--{if $tpl_login}--><s><!--{/if}-->
+                            <!--{$smarty.const.SPECIAL_PRICE_TITLE}-->(税込)：
+                            <span class="price">
+                                <span id="price03_default_<!--{$id}-->"><!--{strip}-->
+                                    <!--{if $arrProduct.price03_min_inctax == $arrProduct.price03_max_inctax}-->
+                                      <!--{$arrProduct.price03_min_inctax|n2s}-->
+                                    <!--{else}-->
+                                      <!--{$arrProduct.price03_min_inctax|n2s}-->～<!--{$arrProduct.price03_max_inctax|n2s}-->
+                                    <!--{/if}-->
+                                </span><span id="price03_dynamic_<!--{$id}-->"></span><!--{/strip}-->
+                                円</span>
+                            <!--{if $tpl_login}--></s><!--{/if}-->
+                    </div>
+                    <!--{if $tpl_login}-->
+                    <div class="pricebox sale_price">
+                        <!--{$smarty.const.MEMBER_PRICE_TITLE}-->(税込)：
                         <span class="price">
-                            <span id="price03_default_<!--{$id}-->"><!--{strip}-->
-                                <!--{if $arrProduct.price03_min_inctax == $arrProduct.price03_max_inctax}-->
-                                <!--{$arrProduct.price03_min_inctax|n2s}-->
+                            <span id="price04_default_<!--{$id}-->"><!--{strip}-->
+                                <!--{if $arrProduct.price04_min_inctax == $arrProduct.price04_max_inctax}-->
+                                    <!--{$arrProduct.price04_min_inctax|n2s}-->
                                 <!--{else}-->
-                                <!--{$arrProduct.price03_min_inctax|n2s}-->～<!--{$arrProduct.price03_max_inctax|n2s}-->
+                                    <!--{$arrProduct.price04_min_inctax|n2s}-->～<!--{$arrProduct.price04_max_inctax|n2s}-->
                                 <!--{/if}-->
-                            </span><span id="price03_dynamic_<!--{$id}-->"></span><!--{/strip}-->
+                            </span><span id="price04_dynamic_<!--{$id}-->"></span><!--{/strip}-->
                             円</span>
                     </div>
+                    <!--{/if}-->
 
                     <!--★コメント★-->
                     <div class="listcomment"><!--{$arrProduct.main_list_comment|h|nl2br}--></div>

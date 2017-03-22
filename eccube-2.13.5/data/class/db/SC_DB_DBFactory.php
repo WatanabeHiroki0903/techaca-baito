@@ -263,11 +263,14 @@ class SC_DB_DBFactory
                     ,T4.price02_max
                     ,T4.price03_min
                     ,T4.price03_max
+                    ,T4.price04_min
+                    ,T4.price04_max
                     ,T4.stock_min
                     ,T4.stock_max
                     ,T4.stock_unlimited_min
                     ,T4.stock_unlimited_max
                     ,T4.point_rate
+                    ,T4.discount_rate
                     ,T4.deliv_fee
                     ,dtb_maker.name AS maker_name
                 FROM dtb_products
@@ -281,11 +284,14 @@ class SC_DB_DBFactory
                             ,MAX(price02) AS price02_max
                             ,MIN(price03) AS price03_min
                             ,MAX(price03) AS price03_max
+                            ,(MIN(price03) * (1 - MAX(discount_rate)/100)) AS price04_min
+                            ,(MAX(price03) * (1 - MAX(discount_rate)/100)) AS price04_max
                             ,MIN(stock) AS stock_min
                             ,MAX(stock) AS stock_max
                             ,MIN(stock_unlimited) AS stock_unlimited_min
                             ,MAX(stock_unlimited) AS stock_unlimited_max
                             ,MAX(point_rate) AS point_rate
+                            ,MAX(discount_rate) AS discount_rate
                             ,MAX(deliv_fee) AS deliv_fee
                         FROM dtb_products_class
                         WHERE del_flg = 0 $where_products_class

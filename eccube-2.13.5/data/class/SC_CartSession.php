@@ -329,6 +329,7 @@ class SC_CartSession
             'name'                => true,
             'price02'             => true,
             'price03'             => true,
+            'price04'             => true,
             'point_rate'          => true,
             'main_list_image'     => true,
             'main_image'          => true,
@@ -366,7 +367,12 @@ class SC_CartSession
         $this->cartSession[$productTypeId][$key]['productsClass']
             =& $objProduct->getDetailAndProductsClass($this->cartSession[$productTypeId][$key]['id']);
 
-        $price = $this->cartSession[$productTypeId][$key]['productsClass']['price03'];
+        $objCustomer = new SC_Customer_Ex();
+        if ($objCustomer->isLoginSuccess()) {
+            $price = $this->cartSession[$productTypeId][$key]['productsClass']['price04'];
+        }else{
+            $price = $this->cartSession[$productTypeId][$key]['productsClass']['price03'];
+        }
         $this->cartSession[$productTypeId][$key]['price'] = $price;
 
         $this->cartSession[$productTypeId][$key]['point_rate']
@@ -424,7 +430,12 @@ class SC_CartSession
                 $this->cartSession[$productTypeId][$i]['productsClass']
                     =& $objProduct->getDetailAndProductsClass($this->cartSession[$productTypeId][$i]['id']);
 
-                $price = $this->cartSession[$productTypeId][$i]['productsClass']['price03'];
+                $objCustomer = new SC_Customer_Ex();
+                if ($objCustomer->isLoginSuccess()) {
+                    $price = $this->cartSession[$productTypeId][$i]['productsClass']['price04'];
+                }else{
+                    $price = $this->cartSession[$productTypeId][$i]['productsClass']['price03'];
+                }
                 $this->cartSession[$productTypeId][$i]['price'] = $price;
 
                 $this->cartSession[$productTypeId][$i]['point_rate']
