@@ -529,6 +529,18 @@
             $price03_default.show();
         }
 
+        // 会員価格
+        var $price04_default = $form.find('[id^=price04_default]');
+        var $price04_dynamic = $form.find('[id^=price04_dynamic]');
+        if (classcat2 && typeof classcat2.price04 !== 'undefined' && String(classcat2.price04).length >= 1) {
+
+            $price04_dynamic.text(classcat2.price04).show();
+            $price04_default.hide();
+        } else {
+            $price04_dynamic.hide();
+            $price04_default.show();
+        }
+
         // ポイント
         var $point_default = $form.find('[id^=point_default]');
         var $point_dynamic = $form.find('[id^=point_dynamic]');

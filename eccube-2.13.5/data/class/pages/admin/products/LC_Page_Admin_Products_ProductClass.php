@@ -765,7 +765,7 @@ __EOF__;
     public function getProductsClass($product_id)
     {
         $objQuery =& SC_Query_Ex::getSingletonInstance();
-        $col = 'product_code, price01, price02, price03 stock, stock_unlimited, sale_limit, deliv_fee, point_rate';
+        $col = 'product_code, price01, price02, price03, stock, stock_unlimited, sale_limit, deliv_fee, point_rate';
         $where = 'product_id = ? AND classcategory_id1 = 0 AND classcategory_id2 = 0';
 
         return $objQuery->getRow($col, 'dtb_products_class', $where, array($product_id));
