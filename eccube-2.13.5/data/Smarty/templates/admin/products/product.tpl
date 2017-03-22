@@ -242,6 +242,14 @@
         <!--{/if}-->
 
         <tr>
+            <th>会員割引率<span class="attention"> *</span></th>
+            <td>
+                <span class="attention"><!--{$arrErr.discount_rate}--></span>
+                <input type="text" name="discount_rate" value="<!--{$arrForm.discount_rate|default:0|h}-->" size="6" class="box6" maxlength="<!--{$smarty.const.PERCENTAGE_LEN}-->" style="<!--{if $arrErr.discount_rate != ""}-->background-color: <!--{$smarty.const.ERR_COLOR}-->;<!--{/if}-->"/>％
+                <span class="attention">(半角数字で入力)</span>
+            </td>
+        </tr>
+        <tr>
             <th>商品送料</th>
             <td>
                 <span class="attention"><!--{$arrErr.deliv_fee}--></span>

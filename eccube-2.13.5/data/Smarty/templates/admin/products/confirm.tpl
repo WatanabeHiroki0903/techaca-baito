@@ -150,6 +150,12 @@
         <!--{/if}-->
 
         <tr>
+            <th>会員割引率</th>
+            <td>
+                <!--{if strlen($arrForm.discount_rate) >= 1}--><!--{$arrForm.discount_rate|h}--> ％<!--{/if}-->
+            </td>
+        </tr>
+        <tr>
             <th>商品送料</th>
             <td>
                 <!--{if strlen($arrForm.deliv_fee) >= 1}--><!--{$arrForm.deliv_fee|h}--> 円<!--{/if}-->

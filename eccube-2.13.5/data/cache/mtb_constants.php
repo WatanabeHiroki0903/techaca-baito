@@ -165,6 +165,8 @@ define('NORMAL_PRICE_TITLE', "通常価格");
 define('SALE_PRICE_TITLE', "販売価格");
 /** 価格名称 */
 define('SPECIAL_PRICE_TITLE', "特別価格");
+/** 価格名称 */
+define('MEMBER_PRICE_TITLE', "会員価格");
 /** 標準ログファイル */
 define('LOG_REALFILE', DATA_REALDIR . "logs/site.log");
 /** 会員ログイン ログファイル */

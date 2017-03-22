@@ -1762,4 +1762,29 @@ class SC_CheckError
 
         return strlen($string) > 0 && !ctype_digit($string);
     }
+
+    /**
+     * パーセンテージの値が適切か判定
+     *
+     * 100以上のときエラーを返す
+     * @param  array $value value[0] = 項目名 value[1] = 判定対象
+     * @return void
+     */
+    public function MAX_PERCENTAGE_CHECK($value)
+    {
+        $disp_name = $value[0];
+        $keyname = $value[1];
+
+        if (isset($this->arrErr[$keyname])) {
+            return;
+        }
+
+        $this->createParam($value);
+
+        $input_var = $this->arrParam[$keyname];
+        if ($input_var > 100) {
+            $this->arrErr[$keyname] =
+                "※ {$disp_name}が100を超えています。<br />";
+        }
+    }
 }
